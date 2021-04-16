@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dropdownModel1StoreContainer" CdmEntityContainer="dropdownEntities1">
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="dropdownModel1.Student">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="studentID" ColumnName="studentID" />
+          <ScalarProperty Name="studentName" ColumnName="studentName" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="StudentContact" ColumnName="StudentContact" />
+          <ScalarProperty Name="StudentRoll" ColumnName="StudentRoll" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

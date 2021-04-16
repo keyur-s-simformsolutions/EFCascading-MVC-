@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="container">
+    <h3>Select Country</h3>
+    <div class="dropdown">
+        @Html.DropDownList("country", ViewBag.country as List<SelectListItem>, new { @class = "form-control" })
+    </div>
+    <h3>Select State</h3>
+    <div class="dropdown">
+        @Html.DropDownList("state", new SelectList(string.Empty, "Value", "Text"), "--Select State--", new { @class = "form-control" })
+    </div>
+    <h3>Select City</h3>
+    <div class="dropdown">
+        @Html.DropDownList("city", new SelectList(string.Empty, "Value", "Text"), "--Select City--", new { @class = "form-control" })
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        $("#country").change(function () {
+            $("#state").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getstate")',
+
+                dataType: 'json',
+
+                data: { id: $("#country").val() },
+
+
+                success: function (states) {
+
+
+                    $.each(states, function (i, state) {
+                        $("#state").append('<option value="' + state.Value + '">' +
+                             state.Text + '</option>');
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+
+</script>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        $("#state").change(function () {
+            $("#city").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getcity")',
+                dataType: 'json',
+                data: { id: $("#state").val() },
+                success: function (city) {
+
+                    $.each(city, function (i, city) {
+                        $("#city").append('<option value="'
+                                                   + city.Value + '">'
+                                             + city.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>  
